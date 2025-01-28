@@ -1,0 +1,39 @@
+.include "macrolib.asm"
+.text
+.globl compare
+
+compare:
+    addi sp, sp, -4             # Выделяем место на стеке
+    sw ra, 0(sp)                # Сохраняем адрес возврата на стеке
+
+    # Проверяем, равны ли размеры массивов
+    bne a0, a1, wrong_result    # Если размеры не равны, выводим WA!
+
+    slli t2, a1, 2              # t2 = a1 * 4 (размер корректного массива B в байтах)
+    add t0, zero, a6            # t0 адрес correct_array_B
+    add t1, zero, a5            # t1 адрес real_array_B
+    add t2, t0, t2              # t2 конец correct_array_B (t0 + размер в байтах)
+
+compare_loop:
+    blt t0, t2, compare_elements
+    j success                   # Если достигли конца correct_array_B, массивы совпадают
+
+compare_elements:
+    lw t3, 0(t0)                # t3 = correct_array_B[i]
+    lw t4, 0(t1)                # t4 = real_array_B[i]
+    bne t3, t4, wrong_result
+    addi t0, t0, 4              # Переходим к следующему элементу correct_array_B
+    addi t1, t1, 4              # Переходим к следующему элементу real_array_B
+    j compare_loop
+
+wrong_result:
+    print_string("WA!\n")
+    j exit
+
+success:
+    print_string("OK!\n")
+
+exit:
+    lw ra, 0(sp)
+    addi sp, sp, 4 
+    ret
