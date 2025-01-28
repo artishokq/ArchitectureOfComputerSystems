@@ -1,0 +1,5 @@
+minThink=4
+maxThink=7
+minEat=2
+maxEat=4
+simulationTime=45

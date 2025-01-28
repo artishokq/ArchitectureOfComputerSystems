@@ -1,0 +1,3 @@
+/Users/artem7k/CLionProjects/Solution_5/cmake-build-debug/CMakeFiles/Solution_5.dir
+/Users/artem7k/CLionProjects/Solution_5/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/artem7k/CLionProjects/Solution_5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
